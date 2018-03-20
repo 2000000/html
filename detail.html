@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<title></title>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="main_detail">
+			<div class="detail_content">
+				<div class="left">
+					<div></div>
+					<div class="list-group">
+						<a href="javascript:void(0);" class="list-group-item active">
+							<p class="list-group-item-text">
+								状态信息
+							</p>
+						</a>
+						<a href="javascript:void(0);" class="list-group-item">
+							<p class="list-group-item-text">
+								调试模式
+							</p>
+						</a>
+						<a href="javascript:void(0);" class="list-group-item">
+							<p class="list-group-item-text">
+								版本配置
+							</p>
+						</a>
+						<a href="javascript:void(0);" class="list-group-item">
+							<p class="list-group-item-text">
+								系统管理
+							</p>
+						</a>
+					</div>
+				</div>
+				<div class="right">
+					<div class="right_main">
+						<div class="panel panel-warning" id="status">
+						    <div class="panel-heading">
+						        状态信息
+						    </div>
+						    <div class="panel-body">
+						        <table class="table table-striped">
+									<caption></caption>
+								    <thead>
+									    <tr>
+									      <th>电压名称</th>
+									      <th>电压值</th>
+									    </tr>
+								    </thead>
+								    <tbody>
+									    <tr>
+									      <td>电压显示</td>
+									      <td>00000000</td>
+									    </tr>
+									    <tr>
+									      <td>核压显示</td>
+									      <td>1111111</td>
+									    </tr>
+									    <tr>
+									      <td>接口电压</td>
+									      <td>222222</td>
+									    </tr>
+									    <tr>
+									      <td>DDR电压</td>
+									      <td>333333</td>
+									    </tr>
+								    </tbody>
+								</table>
+						    </div>
+						</div>
+						<div class="panel panel-success" id="debugger">
+						    <div class="panel-heading">
+						        调试模式
+						    </div>
+						    <div class="panel-body">
+						          <table class="table table-striped">
+									<caption></caption>
+								    <thead>
+									    <tr>
+									      <th>名称</th>
+									      <th>温度</th>
+									    </tr>
+								    </thead>
+								    <tbody>
+									    <tr>
+									      <td>变压器</td>
+									      <td>40℃</td>
+									    </tr>
+								    </tbody>
+								</table>
+						    </div>
+						</div>
+						<div class="panel panel-info" id="version">
+						    <div class="panel-heading">
+						        版本配置
+						    </div>
+						    <div class="panel-body">
+						        <table class="table table-striped">
+									<caption></caption>
+								    <thead>
+									    <tr>
+									      <th>版本名称</th>
+									      <th>版本号</th>
+									    </tr>
+								    </thead>
+								    <tbody>
+									    <tr>
+									      <td>BOOT</td>
+									      <td>00000000</td>
+									    </tr>
+									    <tr>
+									      <td>ZYNQ_PL</td>
+									      <td>1111111</td>
+									    </tr>
+									    <tr>
+									      <td>LINUX</td>
+									      <td>222222</td>
+									    </tr>
+									    <tr>
+									      <td>FPGA0</td>
+									      <td>333333</td>
+									    </tr>
+									    <tr>
+									      <td>软件</td>
+									      <td>444444</td>
+									    </tr>
+									    <tr>
+									      <td>FPGA1</td>
+									      <td>555555</td>
+									    </tr>
+								    </tbody>
+								</table>
+						    </div>
+						</div>
+						<div class="panel panel-danger" id="system">
+						    <div class="panel-heading">
+						        系统管理
+						    </div>
+						    <div class="panel-body">
+						        这是一个基本的面板
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(function(){
+				$(".left .list-group-item").click(function(){
+					$(".left .list-group-item").removeClass("active");
+					$(this).focus().addClass("active");
+					var index = $(this).index();
+					$(".right_main").animate({"scrollTop":index * $("#status").outerHeight(true)},300);
+				});
+			});
+		</script>
+	</body>
+</html>

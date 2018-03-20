@@ -1,0 +1,132 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+html,body{
+	width: 100%;
+	height: 100%;
+	font-family: "微软雅黑";
+	font-size:16px;
+}
+
+.main_login{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center; 
+	overflow: hidden; 
+	font-size: 24px;
+}
+
+.main_login .login_content{
+	width: 460px;
+	height: 310px;
+	background: url(../img/logIn.png);	
+}
+
+.login_content p{
+	margin:30px 30px;
+	width:400px;
+	height: 40px;
+	text-align: center;
+}
+
+.login_content p:first-child{
+	margin-top: 70px;
+}
+
+.login_content p span{
+	width:90px;
+	display: inline-block;
+}
+
+.login_content p input[type="text"],
+.login_content p input[type="password"]
+{
+	width:300px;
+	height: 34px;
+	font-size: 24px;
+}
+
+.login_content p input[type="submit"]{
+	width: 100px;
+	height: 40px;
+	font-size: 20px;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	border-radius: 10px;
+	box-shadow: 0 0 3px 3px yellow;
+}
+
+/*详情页*/
+.main_detail{
+	width: 100%;
+	height: 100%;
+}
+
+.detail_content{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	overflow: hidden; 
+	font-size: 24px;
+}
+.detail_content .left{
+	flex: 0 0 300px;
+    background-color: #f0f0f0;
+}
+
+.detail_content .left .list-group-item-text{
+	font-size: 24px;
+	text-align: center;
+}
+
+.list-group-item{
+	background-color: transparent; 
+}
+
+.list-group-item:hover{
+	 background-color: transparent;
+}
+
+.list-group-item.active{
+	background-color: #337ab7;
+}
+
+.list-group-item.active .list-group-item-text,
+.list-group-item.active:focus .list-group-item-text
+{
+	color: yellow;
+}
+
+.detail_content .right{
+	flex:1;
+}
+
+.right .right_main{
+	width:100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.panel{
+	width:100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.panel .panel-heading{
+	flex: 0 0 50px;
+	font-size: 22px;
+}
+.panel .panel-body{
+	flex: 1;
+}
+
+td,th{
+	text-align: center;
+}
