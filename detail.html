@@ -108,41 +108,70 @@
 						    <div class="panel-body" style="overflow-y: auto;">
 						    	<div class="panel-body-content">
 						    		<div>
-						    			<h3>角度配置</h3>
-						    			<form class="deploy">
-											<p>
-												<span>theta</span>
-												<input type="number" name="fname" placeholder="0-90" />
-											</p>
-											<p>
-												<span>phy</span>
-												<input type="num" name="lname" placeholder="0-360" />
-											</p>
-											<p>
-												<input type="submit" value="发送"/>
-											</p>
-										</form>
-						    		</div>
-						    	
+										<div class="panel panel-default" style="height: 260px;">
+										    <div class="panel-heading">
+										        <h3 class="panel-title">
+										            网络管理
+										        </h3>
+										    </div>
+										    <div class="panel-body" >
+										        <form class="form-horizontal" role="form">
+												  <div class="form-group">
+												    <label for="theta" class="col-sm-3 control-label" style="font-size: 100">网络地址</label>
+												    <div class="col-sm-9">
+												      <input type="password" class="form-control" id="theta" placeholder="请输入网络地址">
+												    </div>
+												  </div>
+												  <div class="form-group">
+												    <label for="phy" class="col-sm-3 control-label">子网掩码</label>
+												    <div class="col-sm-9">
+												      <input type="text" class="form-control" id="phy" placeholder="请输入子网掩码">
+												    </div>
+												  </div>
+												  <div class="form-group">
+												    <div class="col-sm-offset-6 col-sm-6">
+												      <button type="submit" class="btn btn-default">提交</button>
+												    </div>
+												  </div>
+												</form>
+										    </div>
+										</div>
+					    			</div>
 							        <div>
-							        	<h3>单通道配置</h3>
-							        	<form class="deploy ">
-											<p>
-												<span>通道号</span>
-												<input type="text" name="fname" placeholder="" />
-											</p>
-											<p>
-												<span>相位</span>
-												<input type="text" name="fname" placeholder="" />
-											</p>
-											<p>
-												<span>衰减</span>
-												<input type="text" name="lname" placeholder="" />
-											</p>
-											<p>
-												<input type="submit" value="发送"/>
-											</p>
-										</form>
+							    		<div class="panel panel-default" style="height: 260px">
+										    <div class="panel-heading">
+										        <h3 class="panel-title">
+										            单通道配置
+										        </h3>
+										    </div>
+										    <div class="panel-body" >
+										        <form class="form-horizontal" role="form">
+												  <div class="form-group">
+												    <label for="theta" class="col-sm-3 control-label" style="font-size: 100">通道号</label>
+												    <div class="col-sm-9">
+												      <input type="password" class="form-control" id="theta" placeholder="请输入通道号">
+												    </div>
+												  </div>
+												  <div class="form-group">
+												    <label for="phy" class="col-sm-3 control-label">相位</label>
+												    <div class="col-sm-9">
+												      <input type="text" class="form-control" id="phy" placeholder="请输入相位">
+												    </div>
+												  </div>
+												  <div class="form-group">
+												    <label for="phy" class="col-sm-3 control-label">衰减</label>
+												    <div class="col-sm-9">
+												      <input type="text" class="form-control" id="phy" placeholder="请输入衰减">
+												    </div>
+												  </div>
+												  <div class="form-group">
+												    <div class="col-sm-offset-6 col-sm-6">
+												      <button type="submit" class="btn btn-default">提交</button>
+												    </div>
+												  </div>
+												</form>
+										    </div>
+										</div>
 							    	</div>
 							    </div>
 							    <div class="adjustment">
@@ -157,8 +186,16 @@
 								      				<td rowspan="2" class="flash"><p>flash状态</p></td>
 								      			</tr>
 								      			<tr>
-								      				<td><span>删除校准数据文件</span></td>
-								      				<td><span>写入校准数据文件</span></td>
+								      				<td>
+														<button id="fat-btn" class="btn btn-primary" data-loading-text="删除校准数据文件" 
+	                                                	type="button">删除校准数据文件
+		                                            	</button>
+								      				</td>
+								      				<td>
+								      					<button id="fat-btn" class="btn btn-primary" data-loading-text="写入校准数据文件" 
+	                                                	type="button">写入校准数据文件
+		                                            	</button>
+								      				</td>
 								      			</tr>
 								      		</tbody>
 								      	</table>
@@ -170,12 +207,28 @@
 								      	<table class="table table_RS422_debug" style="margin: 10px 0">
 								      		<tbody>
 								      			<tr>
-								      				<td><span>正常模式</span></td>
-								      				<td><span>串行环回</span></td>
+								      				<td>
+								      					<button id="fat-btn" class="btn btn-primary" data-loading-text="正常模式" 
+		                                                type="button">正常模式
+		                                            	</button>
+                                            		</td>
+								      				<td>
+							      						<button id="fat-btn" class="btn btn-primary" data-loading-text="串行环回" 
+	                                                	type="button">串行环回
+		                                            	</button>
+								      				</td>
 								      			</tr>
 								      			<tr>
-								      				<td><span>数据环回</span></td>
-								      				<td><span>发送测试数据</span></td>
+								      				<td>
+							      						<button id="fat-btn" class="btn btn-primary" data-loading-text="数据环回" 
+	                                                	type="button">数据环回
+	                                            		</button>
+								      				</td>
+								      				<td>
+								      					<button id="fat-btn" class="btn btn-primary" data-loading-text="发送测试数据" 
+		                                                type="button">发送测试数据
+		                                            	</button>
+								      				</td>
 								      			</tr>
 								      		</tbody>
 								      	</table>
@@ -278,8 +331,94 @@
 						    <div class="panel-heading">
 						        系统管理
 						    </div>
-						    <div class="panel-body">
-						        这是一个基本的面板
+						    <div class="panel-body" >
+						    	<div class="panel panel-default" style="height: 260px;">
+								    <div class="panel-heading">
+								        <h3 class="panel-title">
+								            管理口令
+								        </h3>
+								    </div>
+								    <div class="panel-body" >
+								        <form class="form-horizontal" role="form">
+										  <div class="form-group">
+										    <label for="old_password" class="col-sm-2 control-label">原口令</label>
+										    <div class="col-sm-5">
+										      <input type="password" class="form-control" id="old_password" placeholder="请输入原口令" />
+										    </div>
+										  </div>
+										  <div class="form-group">
+										    <label for="new_password" class="col-sm-2 control-label">新口令</label>
+										    <div class="col-sm-5">
+										      <input type="password" class="form-control" id="new_password" placeholder="请输入新口令" />
+										    </div>
+										  </div>
+										  <div class="form-group">
+										    <label for="confirm_password" class="col-sm-2 control-label">口令确认</label>
+										    <div class="col-sm-5">
+										      <input type="password" class="form-control" id="confirm_password" placeholder="请确认口令" />
+										    </div>
+										  </div>
+										  <div class="form-group">
+										    <div class="col-sm-offset-4 col-sm-10">
+										      <button type="submit" class="btn btn-default">提交</button>
+										    </div>
+										  </div>
+										</form>
+								    </div>
+								</div>
+						       	<div class="panel panel-default" style="height: 260px;">
+								    <div class="panel-heading">
+								        <h3 class="panel-title">
+								            网络管理
+								        </h3>
+								    </div>
+								    <div class="panel-body" >
+								        <form class="form-horizontal" role="form">
+										  <div class="form-group">
+										    <label for="net_address" class="col-sm-2 control-label">网络地址</label>
+										    <div class="col-sm-5">
+										      <input type="password" class="form-control" id="net_address" placeholder="请输入网络地址">
+										    </div>
+										  </div>
+										  <div class="form-group">
+										    <label for="netmask_address" class="col-sm-2 control-label">子网掩码</label>
+										    <div class="col-sm-5">
+										      <input type="text" class="form-control" id="netmask_address" placeholder="请输入子网掩码">
+										    </div>
+										  </div>
+										  <div class="form-group">
+										    <label for="gateway" class="col-sm-2 control-label">网关</label>
+										    <div class="col-sm-5">
+										      <input type="text" class="form-control" id="gateway" placeholder="请输入网关">
+										    </div>
+										  </div>
+										  <div class="form-group">
+										    <div class="col-sm-offset-4 col-sm-10">
+										      <button type="submit" class="btn btn-default">提交</button>
+										    </div>
+										  </div>
+										</form>
+								    </div>
+								</div>
+								    <div class="panel panel-default" style="height: 140px;">
+									    <div class="panel-heading">
+									        <h3 class="panel-title">
+									            日志管理
+									        </h3>
+									    
+									    </div> 
+									    <div class="panel-body">
+									    	<div>
+									    		<button id="fat-btn" class="btn btn-primary" data-loading-text="上传日志" 
+                                                type="button">上传日志
+                                                </button>
+                                                <button id="fat-btn" class="btn btn-primary" data-loading-text="删除日志" 
+                                                type="button">删除日志
+                                                </button>
+									    	</div>
+									    </div>   
+									</div>
+								</div>
 						    </div>
 						</div>
 					</div>

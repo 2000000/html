@@ -156,15 +156,16 @@ html,body{
 	width: 50%; 
 } */
 
+
 /*调试模式*/
 .panel-body .panel-body-content{
-	width: 100%;
 	height: 260px;
 	display: flex;
 	/* align-items: center; */
 }
 
 .panel-body .panel-body-content >div{
+	padding: 0 20px;
 	flex: 1;
 }
 
@@ -273,6 +274,11 @@ html,body{
 	color: white;
 }
 
-.RS422_debug{
+/*系统管理*/
+.form-group{
+	margin-bottom: 6px; 
+}
 
+label{
+	font-size: 200;
 }
