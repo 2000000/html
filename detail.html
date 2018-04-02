@@ -117,15 +117,15 @@
 										    <div class="panel-body" >
 										        <form class="form-horizontal" role="form">
 												  <div class="form-group">
-												    <label for="theta" class="col-sm-3 control-label" style="font-size: 100">网络地址</label>
+												    <label for="theta1" class="col-sm-3 control-label" style="font-size: 100">网络地址</label>
 												    <div class="col-sm-9">
-												      <input type="password" class="form-control" id="theta" placeholder="请输入网络地址">
+												      <input type="password" class="form-control" id="theta1" placeholder="请输入网络地址">
 												    </div>
 												  </div>
 												  <div class="form-group">
 												    <label for="phy" class="col-sm-3 control-label">子网掩码</label>
 												    <div class="col-sm-9">
-												      <input type="text" class="form-control" id="phy" placeholder="请输入子网掩码">
+												      <input type="text" class="form-control" id="" placeholder="请输入子网掩码">
 												    </div>
 												  </div>
 												  <div class="form-group">
@@ -147,21 +147,21 @@
 										    <div class="panel-body" >
 										        <form class="form-horizontal" role="form">
 												  <div class="form-group">
-												    <label for="theta" class="col-sm-3 control-label" style="font-size: 100">通道号</label>
+												    <label for="theta2" class="col-sm-3 control-label" style="font-size: 100">通道号</label>
 												    <div class="col-sm-9">
-												      <input type="password" class="form-control" id="theta" placeholder="请输入通道号">
+												      <input type="password" class="form-control" id="theta2" placeholder="请输入通道号">
 												    </div>
 												  </div>
 												  <div class="form-group">
-												    <label for="phy" class="col-sm-3 control-label">相位</label>
+												    <label for="phy1" class="col-sm-3 control-label">相位</label>
 												    <div class="col-sm-9">
-												      <input type="text" class="form-control" id="phy" placeholder="请输入相位">
+												      <input type="text" class="form-control" id="phy1" placeholder="请输入相位">
 												    </div>
 												  </div>
 												  <div class="form-group">
-												    <label for="phy" class="col-sm-3 control-label">衰减</label>
+												    <label for="phy2" class="col-sm-3 control-label">衰减</label>
 												    <div class="col-sm-9">
-												      <input type="text" class="form-control" id="phy" placeholder="请输入衰减">
+												      <input type="text" class="form-control" id="phy2" placeholder="请输入衰减">
 												    </div>
 												  </div>
 												  <div class="form-group">
@@ -250,12 +250,12 @@
 									      <td>00000000</td>
 									      <td>
 									      	<a href="javascript:void(0);" class="a-upload">
-									      		<input type="file" name="" id="" />
+									      		<input type="file" name="file" id="test" />
 									      		浏览
 									      	</a>
 									  	  </td>
 									      <td class="file_item"></td>
-									      <td>加载</td>
+									      <td id="upload">加载</td>
 									    </tr>
 									    <tr>
 									      <td>LINUX版本</td>
@@ -449,6 +449,30 @@
 				        $(".fileerrorTip").html("您未上传文件，或者您上传文件类型有误！").show();
 				        return false 
 				    }
+				});
+
+				$("#upload").click(function(){
+					$.ajax({
+					    url:'/action/uploadTest',
+					    type:'POST', //GET
+					    async:true,    //或false,是否异步
+					    data:{
+					        file:$("#test").val(),
+					    },
+					    timeout:5000,    //超时时间
+				//	    dataType:'json',    //返回的数据格式：json/xml/html/script/
+				
+					    success:function(data,textStatus,jqXHR){
+					        console.log(data)
+					        console.log(textStatus)
+					        console.log(jqXHR)
+					    },
+					    error:function(xhr,textStatus){
+					        console.log('错误')
+					        console.log(xhr)
+					        console.log(textStatus)
+					    }
+					})
 				});
 			});
 		</script>
