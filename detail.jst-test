@@ -51,19 +51,19 @@
 								    <tbody>
 										<tr>
 									      <td>BOOT版本</td>
-									      <td>00000000</td>
+										  <td><% readVer("boot");%></td>
 									    </tr>
 									    <tr>
 									      <td>ZYNQ_PL版本</td>
-									      <td>00000000</td>
+										  <td><% readVer("zynq");%></td>
 									    </tr>
 									    <tr>
 									      <td>LINUX版本</td>
-									      <td>00000000</td>
+										  <td><% readVer("linux");%></td>
 									    </tr>
 									    <tr>
-									      <td>EPGA0版本</td>
-									      <td>00000000</td>
+									      <td>FPGA0版本</td>
+										  <td><% readVer("fpga");%></td>
 									    </tr>
 								    </tbody>
 								</table>
@@ -73,19 +73,19 @@
 								    </thead>
 								    <tbody>
 									      <td>电压显示</td>
-									      <td>00000000</td>
+										  <td><% getVol("vol"); %></td>
 									    </tr>
 									    <tr>
 									      <td>核压显示</td>
-									      <td>1111111</td>
+										  <td><% getVol("core"); %></td>
 									    </tr>
 									    <tr>
 									      <td>接口电压</td>
-									      <td>222222</td>
+										  <td><% getVol("interface"); %></td>
 									    </tr>
 									    <tr>
 									      <td>DDR电压</td>
-									      <td>333333</td>
+										  <td><% getVol("ddr"); %></td>
 									    </tr>
 								    </tbody>
 								</table>
@@ -96,7 +96,7 @@
 								    <tbody>
 										<tr>
 									      <td>温度显示</td>
-									      <td>00000000</td>
+										  <td><% getThermal(); %></td>
 									    </tr>
 								    </tbody>
 								</table>
@@ -116,23 +116,23 @@
 										        </h3>
 										    </div>
 										    <div class="panel-body" >
-										        <form class="form-horizontal" role="form" id="saveReportForm" method="get" action="action/uploadTest"   onsubmit="return saveReport()" >
+										        <form class="form-horizontal" role="form" id="saveReportForm1" method="get" action="action/setipaddress"   onsubmit="return saveReport()" >
 												  <div class="form-group">
 												    <label for="theta1" class="col-sm-3 control-label" style="font-size: 100">网络地址</label>
 												    <div class="col-sm-9">
-												      <input type="password" name="netAddress" class="form-control" id="theta1" placeholder="请输入网络地址">
+												      <input type="text" name="netAddress" class="form-control" id="theta1" placeholder="请输入网络地址">
 												    </div>
 												  </div>
 												  <div class="form-group">
-												    <label for="phy" class="col-sm-3 control-label">子网掩码</label>
+												    <label for="mask" class="col-sm-3 control-label">子网掩码</label>
 												    <div class="col-sm-9">
-												      <input type="text" class="form-control" id="mask" placeholder="请输入子网掩码">
+												      <input type="text" name="subaddress" class="form-control" id="mask" placeholder="请输入子网掩码">
 												    </div>
 												  </div>
 												  <div class="form-group">
 												    <div class="col-sm-offset-6 col-sm-6">
-												      <!--<button type="submit" class="btn btn-default" >提交</button>-->
-<input type="submit" value="提交">
+												      <button type="submit" class="btn btn-default" >提交</button>
+													<!--<input type="submit" value="提交">-->
 												    </div>
 												  </div>
 												</form>
@@ -147,28 +147,29 @@
 										        </h3>
 										    </div>
 										    <div class="panel-body" >
-										        <form class="form-horizontal" role="form">
+										        <form class="form-horizontal" role="form" id="saveReportForm2" method="get" action="action/uploadTest"   onsubmit="return saveReport()">
 												  <div class="form-group">
 												    <label for="theta2" class="col-sm-3 control-label" style="font-size: 100">通道号</label>
 												    <div class="col-sm-9">
-												      <input type="password" class="form-control" id="theta2" placeholder="请输入通道号">
+												      <input type="text" name="theta2" class="form-control" id="theta2" placeholder="请输入通道号">
 												    </div>
 												  </div>
 												  <div class="form-group">
 												    <label for="phy1" class="col-sm-3 control-label">相位</label>
 												    <div class="col-sm-9">
-												      <input type="text" class="form-control" id="phy1" placeholder="请输入相位">
+												      <input type="text" name="phy1" class="form-control" id="phy1" placeholder="请输入相位">
 												    </div>
 												  </div>
 												  <div class="form-group">
 												    <label for="phy2" class="col-sm-3 control-label">衰减</label>
 												    <div class="col-sm-9">
-												      <input type="text" class="form-control" id="phy2" placeholder="请输入衰减">
+												      <input type="text" name="phy2" class="form-control" id="phy2" placeholder="请输入衰减">
 												    </div>
 												  </div>
 												  <div class="form-group">
 												    <div class="col-sm-offset-6 col-sm-6">
-												      <button type="submit" class="btn btn-default">提交</button>
+												      <!--<input type="submit" value="提交">-->
+												      <button type="submit" class="btn btn-default" >提交</button>
 												    </div>
 												  </div>
 												</form>
@@ -429,18 +430,10 @@
 		</div>
 		<script type="text/javascript">
 			function saveReport() {
-alert("1233");
 				// jquery 表单提交
-				$("#saveReportForm").ajaxSubmit(
+				$("#saveReportForm1,#saveReportForm2").ajaxSubmit(
 							{ type: 'get', // 提交方式 get/post url: 'your url', // 需要提交的 url
-
-			//		 dataType : "json", 数据类型
-
-						 data: {
-							ip : $("#theta1").val()
-			//				'account': account,
-			//				'password': password
-						 },
+						 data: $("#saveReportForm1").serialize(),
 						 success: function(data) { // data 保存提交后返回的数据，一般为 json 数据
 							// 此处可对 data 作相关处理
 							alert('提交成功！');

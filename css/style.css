@@ -37,7 +37,7 @@ html,body{
 	margin-top: 70px;
 }
 
-.login_content p span{
+.login_content p label{
 	width:90px;
 	display: inline-block;
 }
@@ -124,6 +124,7 @@ html,body{
 	font-size: 22px;
 }
 .panel .panel-body{
+    min-height:100%;
 	flex: 1;
 }
 
@@ -131,6 +132,12 @@ html,body{
 	text-align: center;
 	width: 50%;
 }
+
+.table.table_version{
+    margin-bottom:0;
+}
+
+
 .table.table_version>thead>tr>th, .table.table_version>tbody>tr>td{
 	text-align: center;
 	width: 20%; 
