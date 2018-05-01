@@ -97,6 +97,7 @@
 										<tr>
 									      <td>温度显示</td>
 										  <td><% getThermal(); %></td>
+										  <td id="datetime"></td>
 									    </tr>
 								    </tbody>
 								</table>
@@ -493,6 +494,14 @@
 					})
 				});
 			});
+
+		var int=self.setInterval("clock()",50)
+		function clock()
+		{
+			var t=new Date()
+			document.getElementById("datatime").value=t
+		}
+
 		</script>
 	</body>
 </html>
