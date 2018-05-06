@@ -49,21 +49,21 @@
 								    	<th colspan="2" style="background-color:#FFFFCC  ">版本信息</th>
 								    </thead>
 								    <tbody>
-										<tr>
-									      <td>BOOT版本</td>
-										  <td><% readVer("boot");%></td>
+									    <tr>
+									      <td>LINUX版本</td>
+										  <td><% readVer("linux");%></td>
 									    </tr>
 									    <tr>
 									      <td>ZYNQ_PL版本</td>
 										  <td><% readVer("zynq");%></td>
 									    </tr>
 									    <tr>
-									      <td>LINUX版本</td>
-										  <td><% readVer("linux");%></td>
-									    </tr>
-									    <tr>
 									      <td>FPGA0版本</td>
 										  <td><% readVer("fpga");%></td>
+									    </tr>
+										<tr>
+									      <td>FPGA1版本</td>
+										  <td><% readVer("boot");%></td>
 									    </tr>
 								    </tbody>
 								</table>
@@ -73,19 +73,19 @@
 								    </thead>
 								    <tbody>
 									      <td>电压显示</td>
-									      <td>00000000</td>
+										  <td><% getVol("vol"); %></td>
 									    </tr>
 									    <tr>
 									      <td>核压显示</td>
-									      <td>1111111</td>
+										  <td><% getVol("core"); %></td>
 									    </tr>
 									    <tr>
 									      <td>接口电压</td>
-									      <td>222222</td>
+										  <td><% getVol("interface"); %></td>
 									    </tr>
 									    <tr>
 									      <td>DDR电压</td>
-									      <td>333333</td>
+										  <td><% getVol("ddr"); %></td>
 									    </tr>
 								    </tbody>
 								</table>
@@ -96,7 +96,7 @@
 								    <tbody>
 										<tr>
 									      <td>温度显示</td>
-									      <td>00000000</td>
+										  <td id="temp"></td>
 									    </tr>
 								    </tbody>
 								</table>
@@ -510,6 +510,30 @@
 				    $(this).parent().parent().parent().find(".file_item").html(fileName);
                 })
 			});
+
+		var int=self.setInterval("loadXMLDoc()",1000)
+		function clock()
+		{
+			var t=new Date()
+			document.getElementById("datetime").innerHTML=t
+		}
+
+		function loadXMLDoc()
+		{
+		var xmlhttp;
+	
+		xmlhttp=new XMLHttpRequest();
+		xmlhttp.onreadystatechange=function()
+		  {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+			document.getElementById("temp").innerHTML=xmlhttp.responseText;
+			}
+		  }
+		xmlhttp.open("GET","/action/gettemp",true);
+		xmlhttp.send();
+		}
+
 		</script>
 	</body>
 </html>
