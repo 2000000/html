@@ -49,21 +49,21 @@
 								    	<th colspan="2" style="background-color:#FFFFCC  ">版本信息</th>
 								    </thead>
 								    <tbody>
-										<tr>
-									      <td>BOOT版本</td>
-										  <td><% readVer("boot");%></td>
+									    <tr>
+									      <td>LINUX版本</td>
+										  <td><% readVer("linux");%></td>
 									    </tr>
 									    <tr>
 									      <td>ZYNQ_PL版本</td>
 										  <td><% readVer("zynq");%></td>
 									    </tr>
 									    <tr>
-									      <td>LINUX版本</td>
-										  <td><% readVer("linux");%></td>
-									    </tr>
-									    <tr>
 									      <td>FPGA0版本</td>
 										  <td><% readVer("fpga");%></td>
+									    </tr>
+										<tr>
+									      <td>FPGA1版本</td>
+										  <td><% readVer("boot");%></td>
 									    </tr>
 								    </tbody>
 								</table>
@@ -96,8 +96,7 @@
 								    <tbody>
 										<tr>
 									      <td>温度显示</td>
-										  <td><% getThermal(); %></td>
-										  <td id="datetime"></td>
+										  <td id="temp"></td>
 									    </tr>
 								    </tbody>
 								</table>
@@ -495,11 +494,27 @@
 				});
 			});
 
-		var int=self.setInterval("clock()",50)
+		var int=self.setInterval("loadXMLDoc()",1000)
 		function clock()
 		{
 			var t=new Date()
-			document.getElementById("datatime").value=t
+			document.getElementById("datetime").innerHTML=t
+		}
+
+		function loadXMLDoc()
+		{
+		var xmlhttp;
+	
+		xmlhttp=new XMLHttpRequest();
+		xmlhttp.onreadystatechange=function()
+		  {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+			document.getElementById("temp").innerHTML=xmlhttp.responseText;
+			}
+		  }
+		xmlhttp.open("GET","/action/gettemp",true);
+		xmlhttp.send();
 		}
 
 		</script>
