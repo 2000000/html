@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<title></title>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.form.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="main_detail">
+			<div class="detail_content">
+				<div class="left">
+					<div></div>
+					<div class="list-group">
+						<a href="javascript:void(0);" class="list-group-item active">
+							<p class="list-group-item-text">
+								状态信息
+							</p>
+						</a>
+						<a href="javascript:void(0);" class="list-group-item">
+							<p class="list-group-item-text">
+								调试模式
+							</p>
+						</a>
+						<a href="javascript:void(0);" class="list-group-item">
+							<p class="list-group-item-text">
+								版本配置
+							</p>
+						</a>
+						<a href="javascript:void(0);" class="list-group-item">
+							<p class="list-group-item-text">
+								系统管理
+							</p>
+						</a>
+					</div>
+				</div>
+				<div class="right">
+					<div class="right_main">
+						<div class="panel panel-warning" id="status">
+						    <div class="panel-heading">
+						        状态信息
+						    </div>
+						    <div class="panel-body" style="overflow-y: auto;">
+						        <table class="table table-striped table-bordered table_status" >
+								    <thead>
+								    	<th colspan="2" style="background-color:#FFFFCC  ">版本信息</th>
+								    </thead>
+								    <tbody>
+									    <tr>
+									      <td>LINUX版本</td>
+										  <td><% readVer("linux");%></td>
+									    </tr>
+									    <tr>
+									      <td>ZYNQ_PL版本</td>
+										  <td><% readVer("zynq");%></td>
+									    </tr>
+									    <tr>
+									      <td>FPGA0版本</td>
+										  <td><% readVer("fpga0");%></td>
+									    </tr>
+										<tr>
+									      <td>FPGA1版本</td>
+										  <td><% readVer("fpga1");%></td>
+									    </tr>
+								    </tbody>
+								</table>
+								 <table class="table table-striped table-bordered table_status" >
+								    <thead>
+								    	<th colspan="2" style="background-color: #B0C4DE">电压信息</th>
+								    </thead>
+								    <tbody>
+									      <td>电压显示</td>
+										  <td><% getVol("vol"); %></td>
+									    </tr>
+									    <tr>
+									      <td>核压显示</td>
+										  <td><% getVol("core"); %></td>
+									    </tr>
+									    <tr>
+									      <td>DDR电压</td>
+										  <td><% getVol("ddr"); %></td>
+									    </tr>
+								    </tbody>
+								</table>
+								 <table class="table table-striped table-bordered table_status" >
+								    <thead>
+								    	<th colspan="2" style="background-color: #B0E0E6">温度显示</th>
+								    </thead>
+								    <tbody>
+										<tr>
+									      <td>温度显示</td>
+										  <td id="temp"></td>
+									    </tr>
+								    </tbody>
+								</table>
+						    </div>
+						</div>
+						<div class="panel panel-success" id="debugger">
+						    <div class="panel-heading">
+						        调试模式
+						    </div>
+						    <div class="panel-body" style="overflow-y: auto;">
+						    	<div class="panel-body-content">
+						    		<div>
+										<div class="panel panel-default" style="height: 270px;">
+										    <div class="panel-heading">
+										        <h3 class="panel-title">
+										            角度发送
+										        </h3>
+										    </div>
+										    <div class="panel-body" >
+										        <form class="form-horizontal" role="form" id="saveReportForm1" method="get" action="action/readPhase"   onsubmit="return saveReport1(this)" >
+												  <div class="form-group">
+												    <label for="theta1" class="col-sm-3 control-label" style="font-size: 100">Theta</label>
+												    <div class="col-sm-9">
+												      <input type="text" name="theta" class="form-control" id="theta1" placeholder="请输入Theta">
+												    </div>
+												  </div>
+												  <div class="form-group">
+												    <label for="mask" class="col-sm-3 control-label">Phi</label>
+												    <div class="col-sm-9">
+													  <table>
+														  <tr> <input type="text" name="phi" class="form-control" id="mask" placeholder="请输入Phi"></tr>
+														  <tr><td>结果:</td><td id="phi1"><td></tr>
+														  <tr><td></td><td id="phi2"><td></tr>
+													  </table>
+												    </div>
+												  </div>
+
+												  <div class="form-group">
+												    <div class="col-sm-offset-6 col-sm-6">
+												      <button type="submit" class="btn btn-default" id="btn1">提交</button>
+													<!--<input type="submit" value="提交">-->
+												    </div>
+												  </div>
+												</form>
+										    </div>
+										</div>
+					    			</div>
+							        <div>
+							    		<div class="panel panel-default" style="height: 270px">
+										    <div class="panel-heading">
+										        <h3 class="panel-title">
+										            单通道配置
+										        </h3>
+										    </div>
+										    <div class="panel-body" >
+										        <form class="form-horizontal" role="form" id="saveReportForm2" method="get" action="action/channelSet" onsubmit="return saveReport1(this)">
+												  <div class="form-group">
+												    <label for="theta2" class="col-sm-3 control-label" style="font-size: 100">通道号</label>
+												    <div class="col-sm-9">
+												      <input type="text" name="cha" class="form-control" id="theta2" placeholder="请输入通道号">
+												    </div>
+												  </div>
+												  <div class="form-group">
+												    <label for="phy1" class="col-sm-3 control-label">相位</label>
+												    <div class="col-sm-9">
+												      <input type="text" name="phase" class="form-control" id="phy1" placeholder="请输入相位">
+												    </div>
+												  </div>
+												  <div class="form-group">
+												    <label for="phy2" class="col-sm-3 control-label">衰减</label>
+												    <div class="col-sm-9">
+												      <input type="text" name="datt" class="form-control" id="phy2" placeholder="请输入衰减">
+												    </div>
+												  </div>
+												  <div class="form-group">
+												    <div class="col-sm-offset-6 col-sm-6">
+												      <!--<input type="submit" value="提交">-->
+												      <button type="submit" class="btn btn-default" id="btn2">提交</button>
+												    </div>
+												  </div>
+												</form>
+										    </div>
+										</div>
+							    	</div>
+							    </div>
+							    <div class="adjustment">
+							    	<h3>校准数据</h3>
+							    	<div class="adjustment_content"> 
+
+						      <form id="saveReportForm4" class="form-horizontal table_version"  method="post" action="/action/uploadTest" enctype="multipart/form-data" onsubmit="return saveReport2(this)">
+								      	<table class="table table_adjustment" style="margin:10px 0 ">
+								      		<tbody>
+								      			<tr style="border-radius: 10px;">
+								      				<td colspan="2" style="text-align: center;">
+								      					<input type="file" name="浏览" id="" />
+								      				</td>
+								      				<td rowspan="2" class="flash"><p>flash状态</p></td>
+								      			</tr>
+								      			<tr>
+								      				<td>
+														<button id="fat-btn" class="btn btn-primary" type="submit">删除校准数据文件</button>
+								      				</td>
+								      				<td>
+								     	<button id="fat-btn" class="btn btn-primary" type="submit">写入校准数据文件</button>
+								      				</td>
+								      			</tr>
+								      		</tbody>
+								      	</table>
+           </form>
+							    	</div>
+							    </div>
+							    <div class="RS422_debug">
+							    	<h3>RS422调试</h3>
+							    	<div class="RS422_debug_content"> 
+								      	<table class="table table_RS422_debug" style="margin: 10px 0">
+								      		<tbody>
+								      			<tr>
+										        <form class="form-horizontal" role="form" action="action/rs422_normal" onsubmit="return saveReport1(this)">
+								      				<td><button id="fat-btn" class="btn btn-primary" type="submit">正常模式</button></td>
+                  </form>
+										        <form class="form-horizontal" role="form" action="action/rs422_loop_line" onsubmit="return saveReport1(this)">
+								      				<td><button id="fat-btn" class="btn btn-primary" type="submit">串行环回</button></td>
+                  </form>
+								      			</tr>
+								      			<tr>
+										        <form class="form-horizontal" role="form" action="action/rs422_loop_data" onsubmit="return saveReport1(this)">
+								      				<td><button id="fat-btn" class="btn btn-primary"	type="submit">数据环回</button></td>
+                  </form>
+										        <form class="form-horizontal" role="form" action="action/rs422_tx_test" onsubmit="return saveReport1(this)">
+								      				<td><button id="fat-btn" class="btn btn-primary" type="submit">发送测试数据</button></td>
+                  </form>
+								      			</tr>
+								      		</tbody>
+								      	</table>
+							    	</div>
+							    </div>
+						    </div>
+						</div>
+						<div class="panel panel-info" id="version">
+						    <div class="panel-heading">
+						        版本配置
+						    </div>
+						    <div class="panel-body">
+						        <form id="saveReportForm3" class="form-horizontal"  method="post" action="/action/uploadTest" enctype="multipart/form-data" onsubmit="return saveReport2(this)">
+						            <table class="table table-striped table-bordered table_version" >
+								        <thead>
+								        	<th colspan="5" style="background-color: #B0C4DE">软件配置</th>
+								        </thead>
+									   </table>
+						        </form>
+						        <form id="saveReportForm4" class="form-horizontal table_version"  method="post" action="/action/uploadTest" enctype="multipart/form-data" onsubmit="return saveReport2(this)">
+						            <table class="table table-striped table-bordered table_version" >
+								        <tbody>
+									          
+									        <tr>
+									          <td>LINUX版本</td>
+									          <td>00000000</td>
+									          <td>
+									          	<a href="javascript:void(0);" class="a-upload">
+									          		<input type="file" name="file" id="test2" />
+									          		浏览
+									          	</a>
+									      	  </td>
+									          <td class="file_item"></td>
+									           <td><button type="submit" class="btn btn-default" id="btn4">提交</button></td>
+									        </tr>
+								        </tbody>
+								    </table>
+						        </form>
+						        <form id="saveReportForm5" class="form-horizontal table_version"  method="post" action="/action/uploadTest" enctype="multipart/form-data" onsubmit="return saveReport2(this)" style="margin-bottom:20px">
+						            <table class="table table-striped table-bordered table_version" >
+								        <tbody> 
+									        <tr>
+									         <td>软件版本</td>
+									      <td>00000000</td>
+									      <td>
+									      	<a href="javascript:void(0);" class="a-upload">
+									      		<input type="file" name="file" id="test3" />
+									      		浏览
+									      	</a>
+									  	  </td>
+									      <td class="file_item"></td>
+									      <td><button type="submit" class="btn btn-default" id="btn5">提交</button></td>
+									        </tr>
+								        </tbody>
+								    </table>
+						        </form>
+					            
+					            <form id="saveReportForm6" class="form-horizontal table_version"  method="post" action="/action/uploadTest" enctype="multipart/form-data" onsubmit="return saveReport2(this)">
+						            <table class="table table-striped table-bordered table_version" >
+						                <thead>
+								    	<th colspan="5" style="background-color: #B0C4DE">FPGA配置</th>
+								     </thead>
+								        <tbody> 
+									        <tr>
+									         <td>ZYNQ_PL版本</td>
+									      <td>00000000</td>
+									      <td>
+									      	<a href="javascript:void(0);" class="a-upload">
+									      		<input type="file" name="file" id="test4" />
+									      		浏览
+									      	</a>
+									  	  </td>
+									      <td class="file_item"></td>
+									      <td><button type="submit" class="btn btn-default" id="btn6">提交</button></td>
+									        </tr>
+								        </tbody>
+								    </table>
+						        </form>
+						        
+						        <form id="saveReportForm7" class="form-horizontal table_version"  method="post" action="/action/uploadTest" enctype="multipart/form-data" onsubmit="return saveReport2(this)">
+						            <table class="table table-striped table-bordered table_version" >
+						                
+								        <tbody> 
+									        <tr>
+									         <td>FPGA0版本</td>
+									      <td>00000000</td>
+									      <td>
+									      	<a href="javascript:void(0);" class="a-upload">
+									      		<input type="file" name="file" id="test5" />
+									      		浏览
+									      	</a>
+									  	  </td>
+									      <td class="file_item"></td>
+									      <td><button type="submit" class="btn btn-default" id="btn7">提交</button></td>
+									        </tr>
+								        </tbody>
+								    </table>
+						        </form>
+						        <form id="saveReportForm8" class="form-horizontal table_version"  method="post" action="/action/uploadTest" enctype="multipart/form-data" onsubmit="return saveReport2(this)">
+						            <table class="table table-striped table-bordered table_version" >
+						               
+								        <tbody> 
+									        <tr>
+									        <td>FPGA1版本</td>
+									      <td>00000000</td>
+									      <td>
+									      	<a href="javascript:void(0);" class="a-upload">
+									      		<input type="file" name="file" id="test6" />
+									      		浏览
+									      	</a>
+									  	  </td>
+									      <td class="file_item"></td>
+									      <td><button type="submit" class="btn btn-default" id="btn8">提交</button></td>
+									        </tr>
+								        </tbody>
+								    </table>
+						        </form>
+						    </div>
+						</div>
+						<div class="panel panel-danger" id="system">
+						    <div class="panel-heading">
+						        系统管理
+						    </div>
+						    <div class="panel-body" >
+						    	<div class="panel panel-default" style="height: 260px;">
+								    <div class="panel-heading">
+								        <h3 class="panel-title">
+								            管理口令
+								        </h3>
+								    </div>
+								    <div class="panel-body" >
+								        <form class="form-horizontal" role="form" method="get" action="action/upload"   onsubmit="return saveReport1(this)">
+										  <div class="form-group">
+										    <label for="old_password" class="col-sm-2 control-label">原口令</label>
+										    <div class="col-sm-5">
+										      <input type="password" class="form-control" name="old_password" id="old_password" placeholder="请输入原口令" />
+										    </div>
+										  </div>
+										  <div class="form-group">
+										    <label for="new_password" class="col-sm-2 control-label">新口令</label>
+										    <div class="col-sm-5">
+										      <input type="password" class="form-control" name="new_password" id="new_password" placeholder="请输入新口令" />
+										    </div>
+										  </div>
+										  <div class="form-group">
+										    <label for="confirm_password" class="col-sm-2 control-label">口令确认</label>
+										    <div class="col-sm-5">
+										      <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="请确认口令" />
+										    </div>
+										  </div>
+										  <div class="form-group">
+										    <div class="col-sm-offset-4 col-sm-10">
+										      <button type="submit" class="btn btn-default" id="btn9">提交</button>
+										    </div>
+										  </div>
+										</form>
+								    </div>
+								</div>
+						       	<div class="panel panel-default" style="height: 260px;">
+								    <div class="panel-heading">
+								        <h3 class="panel-title">
+								            网络管理
+								        </h3>
+								    </div>
+								    <div class="panel-body" >
+								        <form class="form-horizontal" role="form">
+										  <div class="form-group">
+										    <label for="net_address" class="col-sm-2 control-label">网络地址</label>
+										    <div class="col-sm-5">
+										      <input type="password" class="form-control" id="net_address" placeholder="请输入网络地址">
+										    </div>
+										  </div>
+										  <div class="form-group">
+										    <label for="netmask_address" class="col-sm-2 control-label">子网掩码</label>
+										    <div class="col-sm-5">
+										      <input type="text" class="form-control" id="netmask_address" placeholder="请输入子网掩码">
+										    </div>
+										  </div>
+										  <div class="form-group">
+										    <label for="gateway" class="col-sm-2 control-label">网关</label>
+										    <div class="col-sm-5">
+										      <input type="text" class="form-control" id="gateway" placeholder="请输入网关">
+										    </div>
+										  </div>
+										  <div class="form-group">
+										    <div class="col-sm-offset-4 col-sm-10">
+										      <button type="submit" class="btn btn-default">提交</button>
+										    </div>
+										  </div>
+										</form>
+								    </div>
+								</div>
+								    <div class="panel panel-default" style="height: 140px;">
+									    <div class="panel-heading">
+									        <h3 class="panel-title">
+									            日志管理
+									        </h3>
+									    
+									    </div> 
+									    <div class="panel-body">
+									    	<div>
+									    		<button id="fat-btn" class="btn btn-primary" data-loading-text="上传日志" 
+                                                type="button">上传日志
+                                                </button>
+                                                <button id="fat-btn" class="btn btn-primary" data-loading-text="删除日志" 
+                                                type="button">删除日志
+                                                </button>
+									    	</div>
+									    </div>   
+									</div>
+								</div>
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			function saveReport1(form) {
+				// jquery 表单提交
+				$(form).ajaxSubmit(
+							{ type: 'get', // 提交方式 get/post url: 'your url', // 需要提交的 url
+						 data: {},
+						 success: function(data) { // data 保存提交后返回的数据，一般为 json 数据
+							 console.log("data = ",data);
+
+							// 此处可对 data 作相关处理
+							 if ( $(form ).attr("id")== "saveReportForm1") {
+									$("#phi1").text(data);
+								 //document.getElementById("phi1"),innerText = data;
+							 }
+							alert('提交成功！');
+						 },
+								error:function(){
+									console.log("error");
+								}
+						 //$(this).resetForm(); // 提交后重置表单				
+				});
+
+
+				return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+				}
+				
+			
+				
+			function saveReport2(form) {
+				
+				$(form).ajaxSubmit(
+							{ type: 'post', 
+						 data: {},
+						 success: function(data) { 
+							alert('提交成功！');
+						 }
+				});
+				return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转
+				} 
+							
+			$(function(){
+				
+				$(".left .list-group-item").click(function(){
+					$(".left .list-group-item").removeClass("active");
+					$(this).focus().addClass("active");
+					var index = $(this).index();
+					$(".right_main").animate({"scrollTop":index * $("#status").outerHeight(true)},300);
+				});
+
+				$("form").on("change","input[type='file']",function(e){
+                    var filePath=$(this).val();
+				    var arr=filePath.split('\\');
+				    var fileName=arr[arr.length-1];
+				    $(this).parent().parent().parent().find(".file_item").html(fileName);
+                })
+			});
+
+		var int=self.setInterval("loadXMLDoc()",1000)
+		function clock()
+		{
+			var t=new Date()
+			document.getElementById("datetime").innerHTML=t
+		}
+
+		function loadXMLDoc()
+		{
+		var xmlhttp;
+	
+		xmlhttp=new XMLHttpRequest();
+		xmlhttp.onreadystatechange=function()
+		  {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+			document.getElementById("temp").innerHTML=xmlhttp.responseText;
+			}
+		  }
+		xmlhttp.open("GET","/action/gettemp",true);
+		xmlhttp.send();
+		}
+
+		</script>
+	</body>
+</html>
