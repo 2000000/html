@@ -148,23 +148,23 @@
 										        </h3>
 										    </div>
 										    <div class="panel-body" >
-										        <form class="form-horizontal" role="form" id="saveReportForm2" method="get" action="action/uploadTest"   onsubmit="return saveReport1(this)">
+										        <form class="form-horizontal" role="form" id="saveReportForm2" method="get" action="action/channelSet" onsubmit="return saveReport1(this)">
 												  <div class="form-group">
 												    <label for="theta2" class="col-sm-3 control-label" style="font-size: 100">通道号</label>
 												    <div class="col-sm-9">
-												      <input type="text" name="theta2" class="form-control" id="theta2" placeholder="请输入通道号">
+												      <input type="text" name="cha" class="form-control" id="theta2" placeholder="请输入通道号">
 												    </div>
 												  </div>
 												  <div class="form-group">
 												    <label for="phy1" class="col-sm-3 control-label">相位</label>
 												    <div class="col-sm-9">
-												      <input type="text" name="phy1" class="form-control" id="phy1" placeholder="请输入相位">
+												      <input type="text" name="phase" class="form-control" id="phy1" placeholder="请输入相位">
 												    </div>
 												  </div>
 												  <div class="form-group">
 												    <label for="phy2" class="col-sm-3 control-label">衰减</label>
 												    <div class="col-sm-9">
-												      <input type="text" name="phy2" class="form-control" id="phy2" placeholder="请输入衰减">
+												      <input type="text" name="datt" class="form-control" id="phy2" placeholder="请输入衰减">
 												    </div>
 												  </div>
 												  <div class="form-group">
@@ -191,14 +191,14 @@
 								      			</tr>
 								      			<tr>
 								      				<td>
-														<button id="fat-btn" class="btn btn-primary" data-loading-text="删除校准数据文件" 
-	                                                	type="button">删除校准数据文件
-		                                            	</button>
+														<button id="fat-btn" class="btn btn-primary" data-loading-text="删除校准数据文件" type="button">
+																		删除校准数据文件
+		            </button>
 								      				</td>
 								      				<td>
-								      					<button id="fat-btn" class="btn btn-primary" data-loading-text="写入校准数据文件" 
-	                                                	type="button">写入校准数据文件
-		                                            	</button>
+								     	<button id="fat-btn" class="btn btn-primary" data-loading-text="写入校准数据文件" type="button">
+                  写入校准数据文件
+		            </button>
 								      				</td>
 								      			</tr>
 								      		</tbody>
