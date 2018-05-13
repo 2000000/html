@@ -30,11 +30,6 @@
 								版本配置
 							</p>
 						</a>
-						<a href="javascript:void(0);" class="list-group-item">
-							<p class="list-group-item-text">
-								系统管理
-							</p>
-						</a>
 					</div>
 				</div>
 				<div class="right">
@@ -167,6 +162,14 @@
 												      <input type="text" name="datt" class="form-control" id="phy2" placeholder="请输入衰减">
 												    </div>
 												  </div>
+
+												  <div class="form-group">
+												    <label for="phy2" class="col-sm-3 control-label">开关</label>
+												    <div class="col-sm-9">
+                  <input type="checkbox" name="sw">
+												    </div>
+												  </div>
+
 												  <div class="form-group">
 												    <div class="col-sm-offset-6 col-sm-6">
 												      <!--<input type="submit" value="提交">-->
@@ -189,7 +192,7 @@
 								      				<td colspan="2" style="text-align: center;">
 								      					<input type="file" name="浏览" id="" />
 								      				</td>
-								      				<td rowspan="2" class="flash"><p>flash状态</p></td>
+								      				<td rowspan="2" class="flash"><p><% flash_status(); %></p></td>
 								      			</tr>
 								      			<tr>
 								      				<td>
