@@ -30,11 +30,6 @@
 								版本配置
 							</p>
 						</a>
-						<a href="javascript:void(0);" class="list-group-item">
-							<p class="list-group-item-text">
-								系统管理
-							</p>
-						</a>
 					</div>
 				</div>
 				<div class="right">
@@ -167,6 +162,14 @@
 												      <input type="text" name="datt" class="form-control" id="phy2" placeholder="请输入衰减">
 												    </div>
 												  </div>
+
+												  <div class="form-group">
+												    <label for="phy2" class="col-sm-3 control-label">开关</label>
+												    <div class="col-sm-9">
+                  <input type="checkbox" name="sw">
+												    </div>
+												  </div>
+
 												  <div class="form-group">
 												    <div class="col-sm-offset-6 col-sm-6">
 												      <!--<input type="submit" value="提交">-->
@@ -238,7 +241,7 @@
 									          
 									        <tr>
 									          <td>LINUX版本</td>
-									          <td>00000000</td>
+									          <td><% readVer("linux");%></td>
 									          <td>
 									          	<a href="javascript:void(0);" class="a-upload">
 									          		<input type="file" name="file" id="test2" />
@@ -256,7 +259,7 @@
 								        <tbody> 
 									        <tr>
 									         <td>软件版本</td>
-									      <td>00000000</td>
+									      <td>1.0</td>
 									      <td>
 									      	<a href="javascript:void(0);" class="a-upload">
 									      		<input type="file" name="file" id="test3" />
@@ -278,7 +281,7 @@
 								        <tbody> 
 									        <tr>
 									         <td>ZYNQ_PL版本</td>
-									      <td>00000000</td>
+									      <td><% readVer("zynq");%></td>
 									      <td>
 									      	<a href="javascript:void(0);" class="a-upload">
 									      		<input type="file" name="file" id="test4" />
@@ -298,7 +301,7 @@
 								        <tbody> 
 									        <tr>
 									         <td>FPGA0版本</td>
-									      <td>00000000</td>
+									      <td><% readVer("fpga0");%></td>
 									      <td>
 									      	<a href="javascript:void(0);" class="a-upload">
 									      		<input type="file" name="file" id="test5" />
@@ -317,7 +320,7 @@
 								        <tbody> 
 									        <tr>
 									        <td>FPGA1版本</td>
-									      <td>00000000</td>
+									      <td><% readVer("fpga1");%></td>
 									      <td>
 									      	<a href="javascript:void(0);" class="a-upload">
 									      		<input type="file" name="file" id="test6" />
