@@ -190,7 +190,7 @@
 								      		<tbody>
 								      			<tr style="border-radius: 10px;">
 								      				<td colspan="2" style="text-align: center;"><input type="file" name="浏览" id="" /></td>
-													<td rowspan="2" class="flash"><p><% flash_status();%></p></td>
+													<td rowspan="2" class="flash"><p id="caliBin"></p></td>
 								      			</tr>
 								      			<tr>
 								      				<td><button id="fat-btn" class="btn btn-primary" type="submit">写入校准数据文件</button></td>
@@ -502,11 +502,7 @@
 			});
 
 		var int=self.setInterval("loadXMLDoc()",1000)
-		function clock()
-		{
-			var t=new Date()
-			document.getElementById("datetime").innerHTML=t
-		}
+		var int=self.setInterval("cali_status()",1000)
 
 		function loadXMLDoc()
 		{
@@ -523,6 +519,23 @@
 		xmlhttp.open("GET","/action/gettemp",true);
 		xmlhttp.send();
 		}
+
+		function cali_status()
+		{
+		var xmlhttp;
+	
+		xmlhttp=new XMLHttpRequest();
+		xmlhttp.onreadystatechange=function()
+		  {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+			document.getElementById("caliBin").innerHTML=xmlhttp.responseText;
+			}
+		  }
+		xmlhttp.open("GET","/action/cali_status",true);
+		xmlhttp.send();
+		}
+
 
 		</script>
 	</body>
